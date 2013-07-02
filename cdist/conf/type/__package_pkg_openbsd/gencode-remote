@@ -48,6 +48,10 @@ else
    state_should="present"
 fi
 
+if [ -f "$__object/parameter/version" ]; then
+	version="$(cat "$__object/parameter/version")"
+fi
+
 pkg_version="$(cat "$__object/explorer/pkg_version")"
 
 if [ -f "$__object/parameter/pkg_path" ]; then                                  
@@ -69,7 +73,15 @@ case "$state_should" in
         # use this because pkg_add doesn't properly handle errors
         cat << eof
 export PKG_PATH="$pkg_path"                                              
-status=\$(pkg_add "$pkgopts" "$name--$flavor" 2>&1)
+if [ "$version" ]; then
+    if [ "$flavol" ]; then
+        status=\$(pkg_add "$pkgopts" "$name-$version-$flavor" 2>&1)
+    else
+        status=\$(pkg_add "$pkgopts" "$name-$version" 2>&1)
+    fi
+else
+    status=\$(pkg_add "$pkgopts" "$name--$flavor" 2>&1)
+fi
 pkg_info | grep "^${name}.*${flavor}" > /dev/null 2>&1
 
 # We didn't find the package in the list of 'installed packages', so it failed
