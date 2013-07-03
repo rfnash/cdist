@@ -28,4 +28,5 @@ else
 fi
 
 #TODO: Is there a better way?
-pkg_info | grep "$name" | sed 's .*\(-[0-9.][0-9.]*\).* \1 ' | sed 's/-//'
+#pkg_info | grep "$name" | sed 's .*\(-[0-9.][0-9.]*\).* \1 ' | sed 's/-//'
+pkg_info -e "$name"\-\* |  sed 's/^inst://' | sed "s/$name\-//g" | sed 's/^\([^\-]*\).*/\1/'
