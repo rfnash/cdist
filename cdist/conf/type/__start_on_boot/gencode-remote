@@ -65,7 +65,7 @@ case "$state_should" in
 
     absent)
         case "$os" in
-            archlinux)
+            archlinux|parabola)
                 echo "systemctl disable \"$name\""
             ;;
             debian|ubuntu)

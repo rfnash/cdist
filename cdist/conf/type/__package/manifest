@@ -31,7 +31,8 @@ else
    os="$(cat "$__global/explorer/os")"
    case "$os" in
          amazon|centos|fedora|redhat) type="yum" ;;
-         archlinux|parabola) type="yaourt" ;;
+         archlinux) type="pacman" ;;
+         parabola) type="yaourt" ;;
          debian|ubuntu) type="apt" ;;
          freebsd) type="pkg_freebsd" ;;
          gentoo) type="emerge" ;;
