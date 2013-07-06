@@ -30,6 +30,9 @@ case "$($__explorer/os)" in
       # empty, but well...
       cat /etc/arch-release
    ;;
+   parabola)
+      cat /etc/parabola-release
+   ;;
    debian)
       cat /etc/debian_version
    ;;

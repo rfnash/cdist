@@ -32,6 +32,7 @@ else
    case "$os" in
          amazon|centos|fedora|redhat) type="yum" ;;
          archlinux) type="pacman" ;;
+         parabola) type="yaourt" ;;
          debian|ubuntu) type="apt" ;;
          freebsd) type="pkg_freebsd" ;;
          gentoo) type="emerge" ;;

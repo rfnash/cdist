@@ -27,7 +27,7 @@ if [ -f "$__object/parameter/source" ]; then
     source="$(cat "$__object/parameter/source")"
 else
     case "$os" in
-        archlinux|redhat)
+        archlinux|redhat|parabola)
             source="$__type/files/$os"
         ;;
         *)
