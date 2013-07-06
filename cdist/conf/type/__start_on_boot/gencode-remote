@@ -33,8 +33,9 @@ name="$__object_id"
 case "$state_should" in
     present)
         case "$os" in
-            archlinux)
-                echo "systemctl enable \"$name\""
+            archlinux|parabola)
+                echo "sed 's/^\\(DAEMONS=.*\\))/\\1 $name)/' /etc/rc.conf > /etc/rc.conf.cdist-tmp"
+                echo "mv /etc/rc.conf.cdist-tmp /etc/rc.conf"
             ;;
             debian|ubuntu)
                 echo "update-rc.d \"$name\" defaults >/dev/null"

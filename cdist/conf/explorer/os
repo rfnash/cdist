@@ -34,6 +34,11 @@ if [ -f /etc/arch-release ]; then
    exit 0
 fi
 
+if [ -f /etc/parabola-release ]; then
+   echo parabola
+   exit 0
+fi
+
 if [ -f /etc/cdist-preos ]; then
    echo cdist-preos
    exit 0

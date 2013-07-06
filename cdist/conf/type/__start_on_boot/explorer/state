@@ -28,10 +28,21 @@ target_runlevel="$(cat "$__object/parameter/target_runlevel")"
 name="$__object_id"
 
 case "$os" in
-    archlinux)
-        state=$(systemctl is-enabled "$name" >/dev/null 2>&1 \
-            && echo present \
-            || echo absent)
+    archlinux|parabola)
+        # convert bash array to shell
+        daemons=$(grep ^DAEMONS /etc/rc.conf | sed -e 's/^.*=(//' -e 's/)$//')
+
+        # absent, as long as not found
+        state="absent"
+
+        # iterate, last one wins.
+        for daemon in $daemons; do
+            if [ "$daemon" = "$name" -o "$daemon" = "@${name}" ]; then
+                state="present"
+            elif [ "$daemon" = "!${name}" ]; then
+                state="absent"
+            fi
+        done
     ;;
 
     debian|ubuntu|openwrt)
