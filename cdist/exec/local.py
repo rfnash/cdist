@@ -44,6 +44,7 @@ class Local(object):
                  target_host,
                  exec_path=sys.argv[0],
                  initial_manifest=None,
+                 out_path=None,
                  base_path=None,
                  add_conf_dirs=None):
 
