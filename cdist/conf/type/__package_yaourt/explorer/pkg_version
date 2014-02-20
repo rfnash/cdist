@@ -27,4 +27,4 @@ else
    name="$__object_id"
 fi
 
-yaourt -Q "$name" 2>/dev/null | awk '{ print $2 }'
+pacman -Q "$name" 2>/dev/null | awk '{ print $2 }'
